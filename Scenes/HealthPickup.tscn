@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Sprites/healthpickup.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/HealthPickup.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/heartpickup.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/healthfull.ogg" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 20.2447 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 200, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 200, 200, 200 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=7]
+resource_name = "PickupHealth"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("PickupSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="HealthPickup" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="HealthPickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthPickupArea"]
+position = Vector2( -14.5919, 12.347 )
+scale = Vector2( 8.01904, 3.88564 )
+shape = SubResource( 6 )
+
+[node name="HealthSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+frame = 2
+playing = true
+
+[node name="FullSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+pitch_scale = 1.2
+
+[node name="FullSoundTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+pitch_scale = 1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PickupHealth = SubResource( 7 )
+[connection signal="body_entered" from="HealthPickupArea" to="." method="_on_HealthPickupArea_body_entered"]
+[connection signal="timeout" from="FullSoundTimer" to="." method="_on_FullSoundTimer_timeout"]

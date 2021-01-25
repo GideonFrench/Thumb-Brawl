@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/healthfull.ogg-1921f83b7dd7f94faff2a797daf28751.oggstr"
+
+[deps]
+
+source_file="res://Sounds/healthfull.ogg"
+dest_files=[ "res://.import/healthfull.ogg-1921f83b7dd7f94faff2a797daf28751.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

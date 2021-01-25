@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/heartpickup.ogg-960b5eff65db2452d2a585872ef61636.oggstr"
+
+[deps]
+
+source_file="res://Sounds/heartpickup.ogg"
+dest_files=[ "res://.import/heartpickup.ogg-960b5eff65db2452d2a585872ef61636.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

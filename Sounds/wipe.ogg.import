@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/wipe.ogg-846a641ab89b51362b6585f825707689.oggstr"
+
+[deps]
+
+source_file="res://Sounds/wipe.ogg"
+dest_files=[ "res://.import/wipe.ogg-846a641ab89b51362b6585f825707689.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

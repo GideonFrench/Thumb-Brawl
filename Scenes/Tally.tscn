@@ -1,0 +1,132 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Sprites/scores.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/tallies.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/CoinScripts/1.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/CoinScripts/2.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/CoinScripts/3.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/CoinScripts/4.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/CoinScripts/5.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/CoinScripts/6.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/CoinScripts/7.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/CoinScripts/8.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/CoinScripts/9.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/CoinScripts/10.gd" type="Script" id=12]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 200, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 200, 200, 200 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 200, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 200, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 200, 200, 200, 200 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="Tally" type="Node2D"]
+
+[node name="1" type="AnimatedSprite" parent="."]
+position = Vector2( -144.83, 10.0113 )
+frames = SubResource( 5 )
+frame = 1
+playing = true
+script = ExtResource( 3 )
+
+[node name="2" type="AnimatedSprite" parent="."]
+position = Vector2( -102.115, 10.6787 )
+frames = SubResource( 5 )
+frame = 1
+playing = true
+script = ExtResource( 4 )
+
+[node name="3" type="AnimatedSprite" parent="."]
+position = Vector2( -62.7374, 7.3416 )
+frames = SubResource( 5 )
+playing = true
+script = ExtResource( 5 )
+
+[node name="4" type="AnimatedSprite" parent="."]
+position = Vector2( -26.0294, 3.33708 )
+frames = SubResource( 5 )
+playing = true
+script = ExtResource( 6 )
+
+[node name="5" type="AnimatedSprite" parent="."]
+position = Vector2( -100, 0 )
+frames = SubResource( 10 )
+frame = 2
+playing = true
+script = ExtResource( 7 )
+
+[node name="6" type="AnimatedSprite" parent="."]
+position = Vector2( 54.7283, 6.00676 )
+frames = SubResource( 5 )
+frame = 3
+playing = true
+script = ExtResource( 8 )
+
+[node name="7" type="AnimatedSprite" parent="."]
+position = Vector2( 93.4386, 5.33934 )
+frames = SubResource( 5 )
+frame = 3
+playing = true
+script = ExtResource( 9 )
+
+[node name="8" type="AnimatedSprite" parent="."]
+position = Vector2( 134.819, 2.66966 )
+frames = SubResource( 5 )
+frame = 2
+playing = true
+script = ExtResource( 10 )
+
+[node name="9" type="AnimatedSprite" parent="."]
+position = Vector2( 169.524, 2.66966 )
+frames = SubResource( 5 )
+frame = 2
+playing = true
+script = ExtResource( 11 )
+
+[node name="10" type="AnimatedSprite" parent="."]
+position = Vector2( 100, 0 )
+frames = SubResource( 10 )
+frame = 3
+playing = true
+script = ExtResource( 12 )

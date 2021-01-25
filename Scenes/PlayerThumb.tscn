@@ -1,0 +1,229 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Sprites/wirethumb.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/PlayerThumb.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/wirethumbattack.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/explosion.png" type="Texture" id=4]
+[ext_resource path="res://Sounds/attack.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sprites/hurt.png" type="Texture" id=6]
+[ext_resource path="res://Sounds/playerhurt.ogg" type="AudioStream" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.4134, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+[sub_resource type="Animation" id=2]
+resource_name = "AttackLeft"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExplosionLeft:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ExplosionRight:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Hurt"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hurt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("HurtSound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 12.4448, 10 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[node name="PlayerThumb" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="DetectArea" type="Area2D" parent="."]
+visible = false
+scale = Vector2( 9.54596, 9.95119 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource( 1 )
+
+[node name="HurtArea" type="Area2D" parent="."]
+scale = Vector2( 1.11921, 1.11921 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea"]
+scale = Vector2( 8.58255, 8.58255 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 8.16746, 8.51417 )
+shape = SubResource( 1 )
+
+[node name="Attack" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+vframes = 2
+hframes = 2
+
+[node name="Hurt" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+vframes = 2
+hframes = 2
+
+[node name="Idle" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 2
+
+[node name="ExplosionRight" type="Sprite" parent="."]
+visible = false
+position = Vector2( 148.835, -33.371 )
+rotation = 0.195805
+scale = Vector2( 1.70366, 1.70366 )
+texture = ExtResource( 4 )
+
+[node name="ExplosionLeft" type="Sprite" parent="."]
+visible = false
+position = Vector2( 329.038, 136.484 )
+rotation = -0.195477
+scale = Vector2( -1.704, 1.704 )
+texture = ExtResource( 4 )
+offset = Vector2( 255.74, -152.253 )
+
+[node name="AttackTimer2" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/AttackLeft = SubResource( 2 )
+anims/AttackRight = SubResource( 3 )
+anims/Hurt = SubResource( 8 )
+anims/Idle = SubResource( 4 )
+
+[node name="AttackZoneRight" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZoneRight"]
+position = Vector2( 110.792, -19.3551 )
+scale = Vector2( 12.5494, 7.18539 )
+shape = SubResource( 5 )
+
+[node name="CentralCollision" type="CollisionShape2D" parent="AttackZoneRight"]
+scale = Vector2( 8.98023, 8.98023 )
+shape = SubResource( 6 )
+
+[node name="AttackZoneLeft" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZoneLeft"]
+position = Vector2( -110.791, -19.355 )
+scale = Vector2( 12.5494, 7.18539 )
+shape = SubResource( 5 )
+
+[node name="CentralCollision" type="CollisionShape2D" parent="AttackZoneLeft"]
+scale = Vector2( 9.21866, 9.21866 )
+shape = SubResource( 6 )
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
+[connection signal="body_entered" from="HurtArea" to="." method="_on_HurtArea_body_entered"]
+[connection signal="timeout" from="AttackTimer2" to="." method="_on_AttackTimer2_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_InvincibleTimer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]
